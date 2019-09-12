@@ -9,3 +9,4 @@
 **/platformio.ini
 **/partitions.csv
 *.swp
+crypt.key
