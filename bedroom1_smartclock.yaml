@@ -1,3 +1,4 @@
+---
 esphome:
   name: bedroom1_smartclock
   platform: ESP8266
@@ -108,4 +109,3 @@ light:
     red: pwm_red
     green: pwm_green
     blue: pwm_blue
-
