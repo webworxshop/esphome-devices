@@ -1,0 +1,51 @@
+---
+esphome:
+  name: room_sensor_toilet
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_passwd
+  use_address: !secret toilet_ip
+
+mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_user
+  password: !secret mqtt_passwd
+
+# Enable logging
+logger:
+
+ota:
+  password: !secret ota_passwd
+
+sensor:
+  - platform: dht
+    pin: D1
+    model: AM2302
+    temperature:
+      name: "Toilet Temperature"
+    humidity:
+      name: "Toilet Humidity"
+    update_interval: 15s
+  - platform: adc
+    pin: A0
+    name: "Toilet Brightness"
+    update_interval: 15s
+    unit_of_measurement: "Lux"
+    icon: "mdi:brightness-6"
+    accuracy_decimals: 0
+    filters:
+      - sliding_window_moving_average:
+          window_size: 15
+          send_every: 15
+      - lambda: return (500*(3.3 - 3.2*x))/(32*x);
+
+binary_sensor:
+  - platform: status
+    name: "Toilet Sensor Status"
+  - platform: gpio
+    pin: D0
+    name: "Toilet Motion"
+    device_class: motion
