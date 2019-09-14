@@ -34,6 +34,21 @@ variables:
   tags:
     - hass
 
+.esphome-deploy: &esphome-deploy
+  stage: deploy
+  variables:
+    PYTHONPATH: "/usr/src/app:$PYTHONPATH"
+  image:
+    name: esphome/esphome:latest
+    entrypoint: [""]
+  before_script:
+    - apt install -y git-crypt
+    - echo $GIT_CRYPT_KEY > git-crypt.key
+    - git-crypt unlock git-crypt.key
+    - esphome dummy.yaml version
+  tags:
+    - hass
+
 yamllint:
   <<: *preflight
   image: sdesbure/yamllint
@@ -69,3 +84,12 @@ esphome-beta:
     name: esphome/esphome:beta
     entrypoint: [""]
   allow_failure: true
+
+# Deployment jobs
+room_sensor_toilet:
+  <<: *esphome-deploy
+  script:
+    - esphome room_sensor_toilet.yaml run
+  only:
+    refs:
+      - master
