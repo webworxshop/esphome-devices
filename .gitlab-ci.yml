@@ -47,7 +47,7 @@ variables:
     - git-crypt unlock git-crypt.key
     - esphome dummy.yaml version
   after_script:
-    - rfm -f git-crypt.key
+    - rf -f git-crypt.key
   tags:
     - hass
 
