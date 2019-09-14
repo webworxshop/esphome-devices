@@ -97,3 +97,30 @@ room_sensor_toilet:
   only:
     refs:
       - master
+    changes:
+      - room_sensor_toilet.yaml
+      - secrets.yaml
+
+bedroom1_smartclock:
+  <<: *esphome-deploy
+  script:
+    - esphome bedroom1_smartclock.yaml run --no-logs
+  only:
+    refs:
+      - master
+    changes:
+      - bedroom1_smartclock.yaml
+      - secrets.yaml
+      - sparkfun_serial_7segment.h
+
+bedroom2_smartclock:
+  <<: *esphome-deploy
+  script:
+    - esphome bedroom2_smartclock.yaml run --no-logs
+  only:
+    refs:
+      - master
+    changes:
+      - bedroom2_smartclock.yaml
+      - secrets.yaml
+      - sparkfun_serial_7segment.h
