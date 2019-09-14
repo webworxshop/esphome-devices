@@ -91,7 +91,7 @@ esphome-beta:
 room_sensor_toilet:
   <<: *esphome-deploy
   script:
-    - esphome room_sensor_toilet.yaml run
+    - esphome room_sensor_toilet.yaml run --no-logs
   only:
     refs:
       - master
