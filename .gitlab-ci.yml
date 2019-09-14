@@ -52,6 +52,7 @@ variables:
     - esphome dummy.yaml version
   after_script:
     - rm -f git-crypt.key
+  retry: 3
   tags:
     - hass
 
