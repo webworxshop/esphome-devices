@@ -42,7 +42,7 @@ variables:
     name: esphome/esphome:latest
     entrypoint: [""]
   before_script:
-    - apt install -y git-crypt
+    - apt update && apt install -y git-crypt
     - echo $GIT_CRYPT_KEY > git-crypt.key
     - git-crypt unlock git-crypt.key
     - esphome dummy.yaml version
