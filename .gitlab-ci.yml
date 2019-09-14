@@ -24,7 +24,7 @@ variables:
   script:
     - |
       for file in $(find \
-        ./config/esphome \
+        ./ \
         -type f \
         -name "*.yaml"\
         -not -name "secrets.yaml"
