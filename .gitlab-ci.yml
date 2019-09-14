@@ -35,6 +35,7 @@ variables:
   tags:
     - hass
 
+# Generic deployment template
 .esphome-deploy: &esphome-deploy
   stage: deploy
   variables:
@@ -48,7 +49,7 @@ variables:
     - git-crypt unlock git-crypt.key
     - esphome dummy.yaml version
   after_script:
-    - rf -f git-crypt.key
+    - rm -f git-crypt.key
   tags:
     - hass
 
