@@ -42,10 +42,12 @@ variables:
     name: esphome/esphome:latest
     entrypoint: [""]
   before_script:
-    - apt update && apt install -y git-crypt
-    - echo $GIT_CRYPT_KEY > git-crypt.key
+    - apt update && apt install -y git-crypt openssl
+    - openssl enc -aes-256-cbc -pbkdf2 -d -in git-crypt.key.enc -out git-crypt.key -k $OPENSSL_PASSPRHASE
     - git-crypt unlock git-crypt.key
     - esphome dummy.yaml version
+  after_script:
+    - rfm -f git-crypt.key
   tags:
     - hass
 
