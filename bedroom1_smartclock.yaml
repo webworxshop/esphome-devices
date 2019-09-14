@@ -22,11 +22,11 @@ logger:
 ota:
   password: !secret ota_passwd
 
-#globals:
-#  - id: display
-#    type: SparkfunSerial7Segment*
-#  - id: display_active
-#    type: bool
+# globals:
+#   - id: display
+#     type: SparkfunSerial7Segment*
+#   - id: display_active
+#     type: bool
 
 time:
   platform: sntp
@@ -51,15 +51,15 @@ time:
 #                id(display)->blank();
 #            }
 
-#custom_component:
-#  - lambda: |-
-#      id(display) = new SparkfunSerial7Segment();
-#      return {id(display)};
+# custom_component:
+#   - lambda: |-
+#       id(display) = new SparkfunSerial7Segment();
+#       return {id(display)};
 
-#status_led:
-#    pin:
-#      number: D4
-#      inverted: True
+# status_led:
+#     pin:
+#       number: D4
+#       inverted: True
 
 sensor:
   - platform: dht

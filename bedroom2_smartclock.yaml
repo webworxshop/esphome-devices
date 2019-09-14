@@ -20,10 +20,10 @@ logger:
 ota:
   password: !secret ota_passwd
 
-#status_led:
-#    pin:
-#      number: D4
-#      inverted: True
+# status_led:
+#     pin:
+#       number: D4
+#       inverted: True
 
 sensor:
   - platform: dht

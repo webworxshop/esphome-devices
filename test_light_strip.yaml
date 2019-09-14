@@ -35,12 +35,12 @@ light:
       - addressable_fireworks:
       - addressable_flicker:
 
-#switch:
-#  - platform: gpio
-#    pin:
-#      number: GPIO25
-#      inverted: yes
-#    name: "Test Relay"
+# switch:
+#   - platform: gpio
+#     pin:
+#       number: GPIO25
+#       inverted: yes
+#     name: "Test Relay"
 
 binary_sensor:
   - platform: status

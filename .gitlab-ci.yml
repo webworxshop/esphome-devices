@@ -45,7 +45,9 @@ variables:
     entrypoint: [""]
   before_script:
     - apt update && apt install -y git-crypt openssl
-    - openssl enc -aes-256-cbc -pbkdf2 -d -in git-crypt.key.enc -out git-crypt.key -k $OPENSSL_PASSPHRASE
+    - |
+      openssl enc -aes-256-cbc -pbkdf2 -d -in git-crypt.key.enc -out \
+          git-crypt.key -k $OPENSSL_PASSPHRASE
     - git-crypt unlock git-crypt.key
     - esphome dummy.yaml version
   after_script:
@@ -61,7 +63,6 @@ yamllint:
     - mv fake_secrets.yaml secrets.yaml
   script:
     - yamllint .
-  allow_failure: true
 
 markdownlint:
   <<: *preflight
