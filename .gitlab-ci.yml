@@ -1,0 +1,71 @@
+---
+stages:
+  - preflight
+  - check
+  - deploy
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+# Generic preflight template
+.preflight: &preflight
+  stage: preflight
+  tags:
+    - hass
+
+# Generic ESPHome template
+.esphome: &esphome
+  stage: check
+  variables:
+    PYTHONPATH: "/usr/src/app:$PYTHONPATH"
+  before_script:
+    - esphome dummy.yaml version
+    - mv fake_secrets.yaml secrets.yaml
+  script:
+    - |
+      for file in $(find \
+        ./config/esphome \
+        -type f \
+        -name "*.yaml"\
+        -not -name "secrets.yaml"
+        ); do
+        esphome $file config
+      done
+  tags:
+    - hass
+
+yamllint:
+  <<: *preflight
+  image: sdesbure/yamllint
+  before_script:
+    - yamllint --version
+    - mv fake_secrets.yaml secrets.yaml
+  script:
+    - yamllint .
+  allow_failure: true
+
+markdownlint:
+  <<: *preflight
+  image:
+    name: ruby:alpine
+    entrypoint: [""]
+  before_script:
+    - apk --no-cache add git
+    - gem install mdl
+    - mdl --version
+  script:
+    - mdl --style all --warnings --git-recurse .
+
+# ESPHome test jobs
+esphome-latest:
+  <<: *esphome
+  image:
+    name: esphome/esphome:latest
+    entrypoint: [""]
+
+esphome-beta:
+  <<: *esphome
+  image:
+    name: esphome/esphome:beta
+    entrypoint: [""]
+  allow_failure: true
