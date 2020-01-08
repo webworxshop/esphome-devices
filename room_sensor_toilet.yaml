@@ -41,6 +41,9 @@ sensor:
           window_size: 15
           send_every: 15
       - lambda: return (500*(3.3 - 3.2*x))/(32*x);
+  - platform: wifi_signal
+    name: "Toilet WiFi Signal"
+    update_interval: 180s
 
 binary_sensor:
   - platform: status
