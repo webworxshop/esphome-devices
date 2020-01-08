@@ -1,12 +1,13 @@
 ---
 esphome:
-  name: test_light_strip
+  name: shed_lights
   platform: ESP32
   board: esp32doit-devkit-v1
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_passwd
+  ssid: !secret wifi_ssid2
+  password: !secret wifi_passwd2
+  use_address: !secret shed_lights_ip
 
 mqtt:
   broker: !secret mqtt_broker
@@ -19,13 +20,19 @@ logger:
 ota:
   password: !secret ota_passwd
 
+power_supply:
+  - id: 'led_power'
+    pin:
+      number: GPIO25
+      inverted: true
+
 light:
   - platform: fastled_clockless
     chipset: WS2812B
     pin: GPIO23
-    num_leds: 150
+    num_leds: 60
     rgb_order: GRB
-    name: "Test LED Strip"
+    name: "Shed Lights"
     effects:
       - addressable_rainbow:
       - addressable_color_wipe:
@@ -34,14 +41,13 @@ light:
       - addressable_random_twinkle:
       - addressable_fireworks:
       - addressable_flicker:
-
-# switch:
-#   - platform: gpio
-#     pin:
-#       number: GPIO25
-#       inverted: yes
-#     name: "Test Relay"
+    power_supply: 'led_power'
 
 binary_sensor:
   - platform: status
-    name: "Test LED Strip Status"
+    name: "Shed Lights Status"
+
+sensor:
+  - platform: wifi_signal
+    name: "Shed WiFi Signal"
+    update_interval: 60s
