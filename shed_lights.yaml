@@ -50,4 +50,4 @@ binary_sensor:
 sensor:
   - platform: wifi_signal
     name: "Shed WiFi Signal"
-    update_interval: 60s
+    update_interval: 180s
