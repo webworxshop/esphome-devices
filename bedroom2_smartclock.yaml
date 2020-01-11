@@ -5,8 +5,8 @@ esphome:
   board: d1_mini
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_passwd
+  ssid: !secret wifi_ssid2
+  password: !secret wifi_passwd2
   use_address: !secret bedroom2_ip
 
 mqtt:
