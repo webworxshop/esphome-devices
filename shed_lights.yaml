@@ -61,12 +61,14 @@ sensor:
   - platform: adc
     pin: GPIO39
     name: "Shed Battery Voltage"
+    icon: "mdi:car-battery"
     attenuation: "11db"
     filters:
       - multiply: 4.03
   - platform: adc
     pin: GPIO39
     name: "Shed Solar Panel Voltage"
+    icon: "mdi:solar-panel"
     attenuation: "11db"
     filters:
       - multiply: 5.68
