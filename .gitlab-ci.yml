@@ -130,7 +130,7 @@ bedroom2_smartclock:
 shed_lights:
   <<: *esphome-deploy
   script:
-    - esphome bedroom2_smartclock.yaml run --no-logs
+    - esphome shed_lights.yaml run --no-logs
   only:
     refs:
       - master
