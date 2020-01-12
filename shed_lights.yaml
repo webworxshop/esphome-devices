@@ -53,22 +53,32 @@ sensor:
     update_interval: 180s
   - platform: dht
     pin: GPIO15
+    model: AM2302
     temperature:
       name: "Shed Battery Box Temperature"
     humidity:
       name: "Shed Battery Box Humidity"
-    update_interval: 15s
+    update_interval: 180s
   - platform: adc
     pin: GPIO39
     name: "Shed Battery Voltage"
     icon: "mdi:car-battery"
     attenuation: "11db"
     filters:
-      - multiply: 4.03
+      - multiply: 4.24
+      - sliding_window_moving_average:
+          window_size: 12
+          send_every: 12
+    update_interval: 15s
   - platform: adc
-    pin: GPIO39
+    pin: GPIO36
     name: "Shed Solar Panel Voltage"
     icon: "mdi:solar-panel"
     attenuation: "11db"
     filters:
-      - multiply: 5.68
+      - multiply: 5.73
+      - filter_out: 0.00
+      - sliding_window_moving_average:
+          window_size: 12
+          send_every: 12
+    update_interval: 15s
