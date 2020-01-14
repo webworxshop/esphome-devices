@@ -1,0 +1,116 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:R R1
+U 1 1 5E1D64D9
+P 2850 2850
+F 0 "R1" H 2920 2896 50  0000 L CNN
+F 1 "22k" H 2920 2805 50  0000 L CNN
+F 2 "" V 2780 2850 50  0001 C CNN
+F 3 "~" H 2850 2850 50  0001 C CNN
+	1    2850 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5E1D67EE
+P 2850 3650
+F 0 "R2" H 2920 3696 50  0000 L CNN
+F 1 "6.8k" H 2920 3605 50  0000 L CNN
+F 2 "" V 2780 3650 50  0001 C CNN
+F 3 "~" H 2850 3650 50  0001 C CNN
+	1    2850 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5E1D6ADC
+P 3700 2850
+F 0 "R3" H 3770 2896 50  0000 L CNN
+F 1 "22k" H 3770 2805 50  0000 L CNN
+F 2 "" V 3630 2850 50  0001 C CNN
+F 3 "~" H 3700 2850 50  0001 C CNN
+	1    3700 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5E1D6F2D
+P 3700 3650
+F 0 "R4" H 3770 3696 50  0000 L CNN
+F 1 "4.6k" H 3770 3605 50  0000 L CNN
+F 2 "" V 3630 3650 50  0001 C CNN
+F 3 "~" H 3700 3650 50  0001 C CNN
+	1    3700 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 3000 3700 3250
+Wire Wire Line
+	2850 3000 2850 3250
+Wire Wire Line
+	3700 2700 3700 2550
+Wire Wire Line
+	3700 2550 4000 2550
+Wire Wire Line
+	2850 2700 2850 2550
+Wire Wire Line
+	2850 2550 3150 2550
+$Comp
+L power:GND #PWR?
+U 1 1 5E1D9751
+P 2850 3950
+F 0 "#PWR?" H 2850 3700 50  0001 C CNN
+F 1 "GND" H 2855 3777 50  0000 C CNN
+F 2 "" H 2850 3950 50  0001 C CNN
+F 3 "" H 2850 3950 50  0001 C CNN
+	1    2850 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5E1D9AE0
+P 3700 3950
+F 0 "#PWR?" H 3700 3700 50  0001 C CNN
+F 1 "GND" H 3705 3777 50  0000 C CNN
+F 2 "" H 3700 3950 50  0001 C CNN
+F 3 "" H 3700 3950 50  0001 C CNN
+	1    3700 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2850 3950 2850 3800
+Wire Wire Line
+	3700 3950 3700 3800
+Wire Wire Line
+	2850 3250 3150 3250
+Connection ~ 2850 3250
+Wire Wire Line
+	2850 3250 2850 3500
+Wire Wire Line
+	3700 3250 4000 3250
+Connection ~ 3700 3250
+Wire Wire Line
+	3700 3250 3700 3500
+Text Label 3150 2550 0    50   ~ 0
+Vbat
+Text Label 4000 2550 0    50   ~ 0
+Vsol
+Text Label 3150 3250 0    50   ~ 0
+adc_bat
+Text Label 4000 3250 0    50   ~ 0
+adc_sol
+$EndSCHEMATC
